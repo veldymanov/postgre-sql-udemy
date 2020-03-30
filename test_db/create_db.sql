@@ -3,14 +3,14 @@
 -- DROP DATABASE test;
 
 CREATE DATABASE test
-    WITH 
+    WITH
     OWNER = postgres
     ENCODING = 'UTF8'
     LC_COLLATE = 'English_United States.1251'
     LC_CTYPE = 'English_United States.1251'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
-		
+
 -- modify tables and add a column
 
 CREATE TABLE examples (
@@ -19,7 +19,7 @@ CREATE TABLE examples (
 	last_name VARCHAR(30)
 );
 
-SELECT* FROM examples;
+-- SELECT* FROM examples;
 
 ALTER TABLE examples
 ADD column email VARCHAR(50) UNIQUE;
@@ -42,10 +42,6 @@ CREATE TABLE practise (
 	product_price NUMERIC(4, 2)
 );
 
-SELECT * FROM practise;
+-- SELECT * FROM practise;
 
 DROP TABLE practise;
-
-
-
-
