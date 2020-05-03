@@ -1,0 +1,83 @@
+-- UPPER and LOWER
+SELECT * from actors;
+
+SELECT UPPER('stop');
+SELECT first_name, UPPER(last_name) AS last_name FROM actors;
+SELECT first_name, LOWER(last_name) AS last_name FROM actors;
+
+-- INITCAP
+SELECT * from movies;
+
+SELECT INITCAP(movie_name) FROM movies;
+
+-- LEFT and RIGHT
+SELECT RIGHT('string', 3);
+
+SELECT LEFT(movie_name, 5), RIGHT(movie_name, 5) from movies;
+
+-- REVERSE
+SELECT REVERSE('string');
+
+SELECT movie_name, REVERSE(movie_name) from movies;
+
+-- challenge
+SELECT * FROM directors;
+SELECT * FROM movies;
+SELECT * FROM actors;
+SELECT * FROM movies_actors ORDER BY movie_id;
+
+SELECT
+	UPPER(d.first_name) AS first_name,
+	UPPER(d.last_name) AS last_name,
+	UPPER(mo.movie_name) AS movie_name
+FROM directors d
+JOIN movies mo ON d.director_id = mo.director_id;
+
+SELECT DISTINCT
+	INITCAP(a.first_name) AS first_name,
+	INITCAP(a.last_name) AS last_name
+FROM actors a
+JOIN movies_actors ma ON a.actor_id = ma.actor_id
+JOIN movies m ON m.movie_id = ma.movie_id
+WHERE m.movie_lang IN ('Chinese', 'Korean');
+
+SELECT REVERSE(first_name), REVERSE(last_name), LEFT(nationality, 3) FROM directors;
+
+SELECT CONCAT(UPPER(LEFT(first_name, 1)), UPPER(LEFT(last_name, 1))) AS initials
+FROM directors;
+
+-- SUBSTRING
+SELECT * FROM actors;
+
+SELECT SUBSTRING('string', 2, 3);
+
+SELECT first_name, SUBSTRING(first_name, 3, 4) from actors;
+
+-- REPLACE
+SELECT REPLACE('a cat palys with another cat', 'cat', 'dog');
+
+SELECT * FROM actors;
+
+SELECT first_name, last_name, REPLACE(gender, 'M', 'Male') FROM actors;
+
+SELECT * FROM directors;
+
+UPDATE directors
+SET nationality = REPLACE(nationality, 'American', 'USA');
+
+-- SPLIT_PART
+SELECT SPLIT_PART('first_namr.last_name@gmail.com', '@', 2);
+
+SELECT
+	movie_name,
+	SPLIT_PART(movie_name, ' ', 1) AS first_word,
+	SPLIT_PART(movie_name, ' ', 2) AS second_word
+FROM movies;
+
+
+-- Cast Operator
+SELECT * FROM directors;
+
+SELECT date_of_birth::TEXT from directors;
+
+SELECT SPLIT_PART(date_of_birth::TEXT, '-', 1) AS year from directors;
